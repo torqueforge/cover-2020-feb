@@ -1,6 +1,24 @@
 require_relative '../../test_helper'
 require_relative '../lib/house'
 
+class RandomOrdererTest < Minitest::Test
+  def test_order
+    Random.srand(1)
+    input    = ["a", "b", "c", "d"]
+    expected = ["d", "c", "a", "b"]
+    assert_equal expected, RandomOrderer.new.order(input)
+    Random.srand
+  end
+end
+
+class PhrasesTest < Minitest::Test
+  def test_phrase
+    input    = ["phrase 1", "phrase 2", "phrase 3", "phrase 4"]
+    expected = "phrase 2 phrase 3 phrase 4"
+    assert_equal expected, Phrases.new(input: input).phrase(3)
+  end
+end
+
 class HouseTest < Minitest::Test
   attr_reader :tale
   def setup
